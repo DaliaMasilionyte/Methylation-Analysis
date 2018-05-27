@@ -19,42 +19,42 @@ Reproducing results of an article "Genome-wide Methylation Profiles Reveal Quant
  1) Mėginių rinkimo ir testavimo procedūros(paruosia meginius - is sito nieko nedarome).
  2) Veiksmai kuriuos reikia atlikti pries tai - DONE.
  3) Metilinimo kokybės kontrolė
-		- PCA
-		- Lytiniu salinimas
-		- Outliers
-		- PCA
-		- Z-statistika(?) - su Gaussian cumulative distribution and the Benjamini-Hochberg procedure.
+	- PCA
+	- Lytiniu salinimas
+	- Outliers
+	- PCA
+	- Z-statistika(?) - su Gaussian cumulative distribution and the Benjamini-Hochberg procedure.
 	
  4) Association testing
-		- F testas, linear modeliai.
-		-  Kovariatoriai
-		-  Binomial test, TCGA
+	- F testas, linear modeliai.
+	-  Kovariatoriai
+	-  Binomial test, TCGA
  
  5) Annotation Enrichment
-		- Illumina db is Bioconductor
-		- Fisher testas
+ 	- Illumina db is Bioconductor
+	- Fisher testas
  
  6) Senejimo modelis
-		- glmnet paketas
-		- Lasso and ridge regresija
-		- crossvalidation
-		- bootstrap analize
-		- AMAR
+ 	- glmnet paketas
+	- Lasso and ridge regresija
+	- crossvalidation
+	- bootstrap analize
+	- AMAR
   
   7) Genetinių variantų asociacijos
-		- F testas, linear models
-		- Kovariatoriai
+	- F testas, linear models
+	- Kovariatoriai
 		
   8) Computing Methylation Deviance
-		- Metilinimo trendu salinimas
-		- Shapiro Wilk
-		- Benjamini-Hochberg
+	- Metilinimo trendu salinimas
+	- Shapiro Wilk
+	- Benjamini-Hochberg
 		
   9) Entropija
         - Shannon entropy
 		
   10) CpG saleliu mappinimas
-		- ...
+	- ...
 # Pagrindine mintis		
 	The search for molecular markers of age that can be used to predict, monitor, and provide insight into age-associated physiological decline and disease. 
 	One such marker is telomere length, a molecular trait strongly correlated with age 
