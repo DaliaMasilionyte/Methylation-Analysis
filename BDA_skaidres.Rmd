@@ -1,0 +1,64 @@
+---
+title: "BDA_skaidres"
+author: "Legus"
+date: "May 25, 2018"
+output: html_document
+---
+
+# Kadangi jau GSE40279 datasetas užkrautas, išsaugome duomenys į RDS failą. Kitas pakrovimas bus greitesnis.
+```{r}
+library(GEOquery)
+#GSE40279 <- getGEO("GSE40279", destdir = "./")
+#saveRDS(GSE40279, file = "GSE40279.rds")
+GSE40279_data <- readRDS(file = "GSE40279.rds")
+```
+
+# Sudarom beta verčių matrica
+```{r}
+betaMatrix <- exprs(GSE40279_data[[1]])
+dim(betaMatrix)
+```
+
+# Visų individų amžiaus pasiskirstymo histograma
+```{r}
+matrix_info <- read.csv("GSE40279_info.csv")
+hist(matrix_info$age..y..ch1, breaks = 20,  xlab = "Age")
+```
+
+# Pasikrauname papildomus duomenis, naudojant bisect biblioteką. Sudarome anotaciją.
+```{r}
+library(bisect)
+
+#Cell composition for 650 individuals from GSE40279. Estimated by running an array method on
+#the original (array) data.
+data("baseline_GSE40279")
+#Simulated amount of methylated reads for 650 individuals from GSE40279. The data was sub-sampled to simulate a 30X coverage.
+data("methylation_GSE40279")
+
+#Simulated amount of total reads reads for 650 individuals from GSE40279. The data was sub-sampled to simulate a 30X coverage.
+data("total_reads_GSE40279")
+
+# Kadangi datasetas ir platforma yra 450k , matchinti nereikia, taip pat NA missing valuse irgi nėra.
+anotacija <- fData(GSE40279_data[[1]])
+group <- anotacija[,1]
+```
+
+# Kraujo lastelių kiekiai, naudojame meffil paketą.
+```{r}
+library(meffil)
+
+fname <- "GSE40279_cellCounts.csv"
+if (!file.exists(fname)) {
+	require(meffil)
+	estimates <- meffil.estimate.cell.counts.from.betas(betaMatrix, 
+		cell.type.reference="blood gse35069", verbose = TRUE)
+	write.csv(estimates, file=fname, row.names=TRUE)	
+}
+estimates <- read.csv(fname)
+
+```
+
+# Normalizuojame beta-matricą.
+```{r eval=FALSE}
+normalizedMatrix <- normalizeBetweenArrays(betaMatrix)
+```
