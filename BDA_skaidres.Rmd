@@ -14,13 +14,13 @@ GSE40279_data <- readRDS(file = "GSE40279.rds")
 ```
 
 # Sudarom beta verčių matrica
-```{r}
+```{r, include=TRUE, echo=TRUE}
 betaMatrix <- exprs(GSE40279_data[[1]])
 dim(betaMatrix)
 ```
 
 # Visų individų amžiaus pasiskirstymo histograma
-```{r}
+```{r, include = TRUE, echo=TRUE}
 matrix_info <- read.csv("GSE40279_info.csv")
 hist(matrix_info$age..y..ch1, breaks = 20,  xlab = "Age")
 ```
